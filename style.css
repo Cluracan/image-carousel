@@ -17,6 +17,7 @@
 
 #content {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
@@ -41,7 +42,6 @@
   height: var(--frame-height);
 
   background-color: pink;
-  /* animation: translateHolder 2s ease-in-out forwards; */
 }
 
 .image {
@@ -49,11 +49,8 @@
   height: var(--frame-height);
 }
 
-@keyframes translateHolder {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(0px - var(--frame-width)));
-  }
+#nav-circles {
+  height: 20px;
+  width: 400px;
+  background-color: green;
 }

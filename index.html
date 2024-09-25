@@ -8,12 +8,21 @@
   <body>
     <div id="content">
       <div id="slideshow">
-        <img id="left-arrow" class="arrow" src="./left_arrow.svg" />
-        <div id="image-frame">
+        <img
+          id="left-arrow"
+          class="arrow pause-transition"
+          src="./left_arrow.svg"
+        />
+        <div id="image-frame" class="pause-transition">
           <div id="image-holder"></div>
         </div>
-        <img id="right-arrow" class="arrow" src="./right_arrow.svg" />
+        <img
+          id="right-arrow"
+          class="arrow pause-transition"
+          src="./right_arrow.svg"
+        />
       </div>
+      <div id="nav-circles"></div>
     </div>
     <script type="module" src="/main.js"></script>
   </body>

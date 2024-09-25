@@ -1,6 +1,5 @@
 import "./style.css";
 
-//insert images into image-holder
 const imageHolder = document.getElementById("image-holder");
 const images = import.meta.glob("./images/*");
 for (const imageUrl in images) {
@@ -9,21 +8,36 @@ for (const imageUrl in images) {
   image.src = imageUrl;
   imageHolder.appendChild(image);
 }
-//add an additional copy of first image to end
-const firstImageCopy = document.createElement("img");
+const firstImageCopy = document.createElement("img"); //extra copy of first image added to end
 firstImageCopy.classList.add("image");
 firstImageCopy.src = Object.keys(images)[0];
 imageHolder.appendChild(firstImageCopy);
 
-//variables
+const numberOfImages = Object.keys(images).length + 1;
+
+/*------------
+  Variables
+------------*/
 let currentIndex = 0;
 let pauseTransition = false;
-const numberOfImages = Object.keys(images).length + 1;
 
 //slideplayer
 const intervalId = setInterval(autoTranslate, 2000);
 
-//left/right arrows
+/*-----------------
+  Event Listeners
+------------------*/
+
+const pauseElements = document.querySelectorAll(".pause-transition");
+for (const element of pauseElements) {
+  element.addEventListener("mouseover", (e) => {
+    pauseTransition = true;
+  });
+  element.addEventListener("mouseout", (e) => {
+    pauseTransition = false;
+  });
+}
+
 const leftArrow = document.getElementById("left-arrow");
 leftArrow.addEventListener("click", (e) => {
   if (currentIndex === 0) {
@@ -33,14 +47,20 @@ leftArrow.addEventListener("click", (e) => {
   currentIndex = (currentIndex - 1) % numberOfImages;
   translateImageHolder(startIndex, currentIndex);
 });
-leftArrow.addEventListener("mouseover", (e) => {
-  pauseTransition = true;
-});
-leftArrow.addEventListener("mouseout", (e) => {
-  pauseTransition = false;
+
+const rightArrow = document.getElementById("right-arrow");
+rightArrow.addEventListener("click", (e) => {
+  if (currentIndex === numberOfImages - 1) {
+    currentIndex = 0;
+  }
+  const startIndex = currentIndex;
+  currentIndex = (currentIndex + 1) % numberOfImages;
+  translateImageHolder(startIndex, currentIndex);
 });
 
-//functions
+/*------------
+  Functions
+------------*/
 function autoTranslate() {
   if (!pauseTransition) {
     if (currentIndex === numberOfImages - 1) {
