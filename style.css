@@ -11,8 +11,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --frame-height: 280px;
-  --frame-width: 200px;
+  --frame-height: 560px;
+  --frame-width: 400px;
 }
 
 #content {
@@ -49,8 +49,18 @@
   height: var(--frame-height);
 }
 
-#nav-circles {
-  height: 20px;
-  width: 400px;
-  background-color: green;
+#nav-circles-holder {
+  display: flex;
+  justify-content: center;
+  width: var(--frame-width);
+  margin-top: 1rem;
+}
+
+.nav-circle {
+  height: 1rem;
+  margin: 0.4rem;
+}
+
+.nav-circle-selected {
+  height: 1.1rem;
 }

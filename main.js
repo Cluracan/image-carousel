@@ -58,6 +58,22 @@ rightArrow.addEventListener("click", (e) => {
   translateImageHolder(startIndex, currentIndex);
 });
 
+const navCircleElements = [];
+const navCirclesHolder = document.getElementById("nav-circles-holder");
+for (let i = 0; i < numberOfImages - 1; i++) {
+  const navCircle = document.createElement("img");
+  navCircle.src = "./circle.svg";
+  navCircle.classList.add("nav-circle");
+  navCircle.addEventListener("click", (e) => {
+    highlightNavCircle(i);
+    let startIndex = currentIndex;
+    currentIndex = i;
+    translateImageHolder(startIndex, currentIndex);
+  });
+  navCirclesHolder.appendChild(navCircle);
+  navCircleElements.push(navCircle);
+}
+
 /*------------
   Functions
 ------------*/
@@ -88,4 +104,18 @@ function translateImageHolder(startIndex, endIndex) {
   };
 
   imageHolder.animate(testTransform, testTransformTiming);
+  highlightNavCircle(endIndex);
+}
+
+function highlightNavCircle(selectedIndex) {
+  if (selectedIndex === numberOfImages - 1) {
+    selectedIndex = 0;
+  }
+  navCircleElements.forEach((navCircle, navIndex) => {
+    if (selectedIndex === navIndex) {
+      navCircle.classList.add("nav-circle-selected");
+    } else {
+      navCircle.classList.remove("nav-circle-selected");
+    }
+  });
 }
